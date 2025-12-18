@@ -61,3 +61,15 @@ plt.ylabel("Nb of occurences")
 plt.grid(True)
 plt.show()
 
+na_mask = data["host_is_superhost"].isna()
+
+na_counts = na_mask.value_counts()
+na_counts.index = ["Non-NA", "NA"]
+na_counts.plot(kind="bar")
+plt.title("NA vs Non-NA for host_is_superhost")
+plt.ylabel("Number of rows")
+plt.grid(True)
+plt.show()
+
+print(data.describe())
+print(f"\n{data.dtypes.value_counts()}")
