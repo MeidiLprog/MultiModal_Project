@@ -29,7 +29,13 @@ if not found:
     print("csv missing\n")
     exit(-1)
 
+print(data.head(15),end="\n")
+#print(data.columns,end="\n")
+col = data.columns
+filt = col.str.contains(r"review",regex=True)
+data_filt = data.loc[:,filt].any(axis=1)
+print(data.loc[data_filt].head(3),end="\n")
 
-
-
+#let us find out about the host
+print(data.columns)
 
