@@ -39,3 +39,25 @@ print(data.loc[data_filt].head(3),end="\n")
 #let us find out about the host
 print(data.columns)
 
+
+host_df = data["host_is_superhost"].isna().sum()
+
+data["host_is_superhost"] = data["host_is_superhost"].map({"f":"False","t":"True"})
+
+distrib = data["host_is_superhost"].value_counts(dropna=False)
+
+print(distrib)
+
+#distribution to explore and understand more
+distrib.plot(kind="bar")
+plt.title("Distribution of values in host_super_host")
+perc = (lambda x: (x / distrib.sum())*100)
+
+for i,v in enumerate(distrib):
+    
+    plt.text(i,v,f"{perc(v):.1f}%",ha="center")
+plt.xlabel("Values")
+plt.ylabel("Nb of occurences")
+plt.grid(True)
+plt.show()
+
